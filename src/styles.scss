@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+div.card {
+    div.card-header {
+        background-color: #841A1F !important;
+        color: white;
+    }
+}
+
+button.btn-primary, button.btn-outline-primary {
+    background-color: #841A1F !important;
+    border-color: #841A1F !important;
+    color: white !important;
+}
+
+.btn-outline-primary {
+    color: white !important;
+}
+
+ul.pagination {
+    .page-link, .page-link:hover {
+        color: #841A1F !important;
+    }
+
+    .page-item.active .page-link {
+        background-color: #841A1F !important;
+        color: white !important;
+        border-color: #841A1F !important;
+    }
+}
