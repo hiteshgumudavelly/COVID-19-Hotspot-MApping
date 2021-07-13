@@ -1,0 +1,149 @@
+<h1 class="mt-4">Update Hotspot Details</h1>
+<form (ngSubmit)="onSubmit()" [formGroup]="hotspotForm">
+    <div class="card">
+        <div class="card-header">
+            Site Info
+        </div>
+
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="id">ID</label>
+                    <input type="text" formControlName="id" class="form-control">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="sname">Site Name</label>
+                    <input type="text" formControlName="siteName" class="form-control"
+                        [ngClass]="{'is-invalid': hotspotFormControl.siteName.invalid && (hotspotFormControl.siteName.touched || submitted),'is-valid': hotspotFormControl.siteName.valid && (hotspotFormControl.siteName.touched || submitted)}">
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.siteName.touched || submitted) && hotspotFormControl.siteName.errors?.required">
+                        Site Name is required
+                    </span>
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.siteName.touched || submitted) && hotspotFormControl.siteName.errors?.maxlength">
+                        Max length is 50
+                    </span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="address">Address</label>
+                    <input type="text" formControlName="address" class="form-control"
+                        [ngClass]="{'is-invalid': hotspotFormControl.address.invalid && (hotspotFormControl.address.touched || submitted),'is-valid': hotspotFormControl.address.valid && (hotspotFormControl.address.touched || submitted)}">
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.address.touched || submitted) && hotspotFormControl.address.errors?.required">
+                        Address is required
+                    </span>
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.address.touched || submitted) && hotspotFormControl.address.errors?.maxlength">
+                        Max length is 100
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="suburb">Suburb Name</label>
+                    <input type="text" formControlName="suburbName" class="form-control"
+                        [ngClass]="{'is-invalid': hotspotFormControl.suburbName.invalid && (hotspotFormControl.suburbName.touched || submitted),'is-valid': hotspotFormControl.suburbName.valid && (hotspotFormControl.suburbName.touched || submitted)}">
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.suburbName.touched || submitted) && hotspotFormControl.suburbName.errors?.required">
+                        Suburb Name is required
+                    </span>
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.suburbName.touched || submitted) && hotspotFormControl.suburbName.errors?.maxlength">
+                        Max length is 50
+                    </span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="postcode">Postcode</label>
+                    <input type="text" formControlName="postcode" class="form-control"
+                        [ngClass]="{'is-invalid': hotspotFormControl.postcode.invalid && (hotspotFormControl.postcode.touched || submitted),'is-valid': hotspotFormControl.postcode.valid && (hotspotFormControl.postcode.touched || submitted)}">
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.postcode.touched || submitted) && hotspotFormControl.postcode.errors?.required">
+                        Postcode is required
+                    </span>
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.postcode.touched || submitted) && hotspotFormControl.postcode.errors?.pattern">
+                        Postcode must be 4 digits
+                    </span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="state">State</label>
+                    <input type="text" formControlName="state" class="form-control"
+                        [ngClass]="{'is-invalid': hotspotFormControl.state.invalid && (hotspotFormControl.state.touched || submitted),'is-valid': hotspotFormControl.state.valid && (hotspotFormControl.state.touched || submitted)}">
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.state.touched || submitted) && hotspotFormControl.state.errors?.required">
+                        State is required
+                    </span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="country">Country</label>
+                    <input type="text" formControlName="country" class="form-control"
+                        [ngClass]="{'is-invalid': hotspotFormControl.country.invalid && (hotspotFormControl.country.touched || submitted),'is-valid': hotspotFormControl.country.valid && (hotspotFormControl.country.touched || submitted)}">
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.country.touched || submitted) && hotspotFormControl.country.errors?.required">
+                        Country is required
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card my-2">
+        <div class="card-header">
+            Additional Info
+        </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="sdate">Start Date</label>
+                    <input type="datetime-local" formControlName="startDate" class="form-control"
+                        [ngClass]="{'is-invalid': hotspotFormControl.startDate.invalid && (hotspotFormControl.startDate.touched || hotspotFormControl.endDate.touched || submitted),'is-valid': hotspotFormControl.startDate.valid && (hotspotFormControl.startDate.touched || hotspotFormControl.endDate.touched || submitted)}">
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.startDate.touched || submitted) && hotspotFormControl.startDate.errors?.required">
+                        Start Date is required
+                    </span>
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.startDate.touched || hotspotFormControl.endDate.touched || submitted) && hotspotFormControl.startDate.errors?.dates">
+                        Start Date must be less than or equal to End Date
+                    </span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="edate">End Date</label>
+                    <input type="datetime-local" formControlName="endDate" class="form-control"
+                        [ngClass]="{'is-invalid': hotspotFormControl.endDate.invalid && (hotspotFormControl.startDate.touched || hotspotFormControl.endDate.touched || submitted),'is-valid': hotspotFormControl.endDate.valid && (hotspotFormControl.startDate.touched || hotspotFormControl.endDate.touched || submitted)}">
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.endDate.touched || submitted) && hotspotFormControl.endDate.errors?.required">
+                        End Date is required
+                    </span>
+                    <span class="text-danger"
+                        *ngIf="(hotspotFormControl.startDate.touched || hotspotFormControl.endDate.touched || submitted) && hotspotFormControl.endDate.errors?.dates">
+                        End Date must be greater than or equal to Start Date
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="notes">Notes</label>
+                    <input type="text" formControlName="note" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-primary" role="alert" *ngIf="isFetching">
+        <i class="fa fa-spinner fa-spin"></i> Fetching COVID-19 Hotspot Details
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="!isFetching && errorMessage != ''">
+        <i class="fa fa-exclamation-circle"></i> {{ errorMessage }}
+    </div>
+
+
+    <button type="submit" class="btn btn-success mr-2" [disabled]="!hotspotForm.valid" id="submit">Submit</button>
+    <button class="btn btn-primary mr-2" type="button" id="cancel" (click)="goToDetails()">Cancel</button>
+
+</form>
