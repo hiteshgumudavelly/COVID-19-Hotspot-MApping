@@ -1,0 +1,71 @@
+.app-name1 {
+  color: #841A1F;
+}
+
+.app-name2 {
+  color: #949494;
+}
+
+.map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 80px 15px 30px;
+}
+
+.map-frame {
+  border: 2px solid black;
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}
+
+.map-message {
+  position: absolute;
+  z-index: 9999;
+  margin: auto;
+  bottom: 0;
+}
+
+.alert {
+  text-align: center;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+  z-index: 10000;
+}
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+#page-content-wrapper {
+  min-width: 100vw;
+}
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+      margin-left: 0;
+  }
+  #page-content-wrapper {
+      min-width: 0;
+      width: 100%;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+      margin-left: -15rem;
+  }
+}
