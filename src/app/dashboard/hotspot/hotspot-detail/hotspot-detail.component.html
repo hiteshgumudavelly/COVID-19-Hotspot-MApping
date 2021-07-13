@@ -1,0 +1,116 @@
+<h1 class="mt-4">Hotspot Details</h1>
+<div class="card">
+  <div class="card-header">
+    Site Info
+  </div>
+  <div class="card-body">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>ID</label>
+        <input type="text" [(ngModel)]="hotspot.id" class="form-control" disabled>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Site Name</label>
+        <input type="text" [(ngModel)]="hotspot.siteName" class="form-control" disabled>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Address</label>
+        <input type="text" [(ngModel)]="hotspot.address" class="form-control" disabled>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Suburb Name</label>
+        <input type="text" [(ngModel)]="hotspot.suburbName" class="form-control" disabled>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Postcode</label>
+        <input type="text" [(ngModel)]="hotspot.postcode" class="form-control" disabled>
+      </div>
+    </div>
+
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>State</label>
+        <input type="text" [(ngModel)]="hotspot.state" class="form-control" disabled>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Country</label>
+        <input type="text" [(ngModel)]="hotspot.country" class="form-control" disabled>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-2">
+  <div class="card-header">
+    Geolocation Info
+  </div>
+  <div class="card-body">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Latitude</label>
+        <input type="text" [(ngModel)]="hotspot.latitude" class="form-control" disabled>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Longitude</label>
+        <input type="text" [(ngModel)]="hotspot.longitude" class="form-control" disabled>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card my-2">
+  <div class="card-header">
+    Additional Info
+  </div>
+  <div class="card-body">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Start Date</label>
+        <input type="datetime-local" [(ngModel)]="hotspot.startDate" class="form-control" disabled>
+      </div>
+      <div class="form-group col-md-6">
+        <label>End Date</label>
+        <input type="datetime-local" [(ngModel)]="hotspot.endDate" class="form-control" disabled>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Notes</label>
+        <input type="text" [(ngModel)]="hotspot.note" class="form-control" disabled>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="alert alert-primary" role="alert" *ngIf="isFetching">
+  <i class="fa fa-spinner fa-spin"></i> Fetching COVID-19 Hotspot Details
+</div>
+<div class="alert alert-success" role="alert" *ngIf="!isFetching && successMessage != ''">
+  <i class="fa fa-check-circle"></i> {{ successMessage }}
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="!isFetching && errorMessage != ''">
+  <i class="fa fa-exclamation-circle"></i> {{ errorMessage }}
+</div>
+<button class="btn btn-primary mr-2" type="button" (click)="goToUpdate()" id="hotspot-detail-update">Update</button>
+<button class="btn btn-danger mr-2" type="button" data-toggle="modal" data-target="#exampleModal" id="hotspot-detail-delete">Delete</button>
+<button class="btn btn-primary" type="button" routerLink="/dashboard/hotspot/list" id="hotspot-detail-back">Back to List</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this hotspot?</h5>
+      </div>     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="deleteHotspot()">Yes</button>
+        <button type="button" #closebutton class="btn btn-secondary" data-dismiss="modal">Cancel</button> 
+      </div>
+    </div>
+  </div>
+</div>

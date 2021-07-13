@@ -1,0 +1,71 @@
+<div class="row align-items-center mt-4">
+  <div class="col-auto mr-auto">
+    <h1>Hotspot List</h1>
+  </div>
+  <div class="col-auto d-none d-md-block">
+    <div class="input-group">
+      <span class="input-group-text"><i class="fa fa-search"></i></span>
+      <input type="email" class="form-control" id="search-text" [(ngModel)]="searchText"
+        (ngModelChange)="refreshHotspots(true)" placeholder="Enter term to search" autofocus id="hotspot-list-search">
+    </div>
+  </div>
+  <div class="col-auto d-none d-md-block">
+    <button routerLink="../create" class="btn btn-primary mr-2" id="hotspot-list-create">Create New Hotspot</button>
+    <button class="btn btn-primary" (click)="refreshData()" [disabled]="isFetching" id="hotspot-list-refresh">Refresh Data</button>
+  </div>
+  <div class="col-auto d-block d-md-none">
+    <button routerLink="../create" class="btn btn-primary mr-2"><i class="fa fa-plus"></i></button>
+    <button class="btn btn-primary" (click)="refreshData()" [disabled]="isFetching"><i class="fa fa-refresh"></i></button>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Location</th>
+        <th scope="col">Site</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hotspot of pagedHotspots" (click)="navigateToDetailsPage(hotspot.id)">
+        <td> {{ hotspot.id }}</td>
+        <td>{{ hotspot.suburbName }}</td>
+        <td>{{ hotspot.siteName }}<br>
+          {{ hotspot.address }}<br>
+          {{ hotspot.suburbName }} {{ hotspot.state }} {{ hotspot.postcode }}</td>
+        <td>{{ hotspot.startDate | date: 'dd MMM yyyy hh:mm a'}}</td>
+        <td>{{ hotspot.endDate | date: 'dd MMM yyyy hh:mm a' }}</td>
+        <td>{{ hotspot.note }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <div class="d-flex justify-content-between p-2 col-md-6 col-12" *ngIf="pagedHotspots.length > 0">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+      (pageChange)="refreshHotspots(false)">
+    </ngb-pagination>
+  </div>
+
+  <div class="col-md-6 col-12">
+    <div class="alert alert-primary" role="alert" *ngIf="isFetching">
+      <i class="fa fa-spinner fa-spin"></i> {{ fetchingMessage }}
+    </div>
+    <div class="alert alert-info" role="alert" *ngIf="!isFetching && notFound">
+      <i class="fa fa-info-circle"></i> Cannot find hotspot record with search term: <i>{{ searchText }}</i>
+    </div>
+    <div class="alert alert-info" role="alert" *ngIf="!isFetching && infoMessage != ''">
+      <i class="fa fa-info-circle"></i> {{ infoMessage }}
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="!isFetching && successMessage != ''">
+      <i class="fa fa-check-circle"></i> {{ successMessage }}
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="!isFetching && errorMessage != ''">
+      <i class="fa fa-exclamation-circle"></i> {{ errorMessage }}
+    </div>
+  </div>
+</div>
